@@ -2,18 +2,29 @@
 import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 const StoreApiInput = ({ children }: { children: React.ReactNode }) => {
+  const router = useRouter();
   const [input, setInput] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await fetch(`/api/set`, {
-      method: "POST",
-      body: JSON.stringify({ storeApi: input }),
-    });
 
-    setInput("");
+    try {
+      await fetch(`/api/set`, {
+        method: "POST",
+        body: JSON.stringify({ storeApi: input }),
+      });
+      setInput("");
+    } catch (error) {
+      console.log(
+        "[SETTING_STORE_API]",
+        (error as { message: string }).message
+      );
+    } finally {
+      router.refresh();
+    }
   };
 
   return (

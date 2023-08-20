@@ -1,7 +1,11 @@
 import StoreApiInput from "@/components/StoreApiInput";
+import { run } from "@/scripts";
 import { cookies } from "next/headers";
 
 export default function Home() {
+  // const generateIndexing = await run();
+  // console.log("[GENERATE_INDEXING_RUN]", generateIndexing);
+
   const api = cookies().get("storeApi")?.value || "";
 
   return (
