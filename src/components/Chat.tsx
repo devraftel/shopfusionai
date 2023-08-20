@@ -6,7 +6,7 @@ import ReactMarkdown from "react-markdown";
 import { MessageCircle, Bot } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { Markdown } from "@/components/markdown";
+import { Markdown } from "@/components/ui/markdown";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";

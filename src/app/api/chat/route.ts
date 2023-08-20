@@ -5,8 +5,7 @@ import {
 } from "openai-edge";
 import { OpenAIStream, StreamingTextResponse } from "ai";
 import { searchStore } from "@/lib/searchStore";
-import { searchVectordb } from "@/lib/searchVectordb";
-import { addProducts } from "@/scripts";
+import { NextRequest } from "next/server";
 
 export const runtime = "edge";
 
@@ -16,11 +15,14 @@ const apiConfig = new Configuration({
 
 const openai = new OpenAIApi(apiConfig);
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   // await addProducts();
+  const storeApi =
+    req.cookies.get("storeApi")?.value.replace(/["\s]/g, "") || "";
 
   try {
     const body = await req.json();
+
     const { messages } = body;
 
     const systemMessage: ChatCompletionRequestMessage = {
@@ -63,7 +65,7 @@ export async function POST(req: Request) {
 
           const embedding = await generateEmbedding(query);
           // const products = await searchVectordb(embedding);
-          const products = await searchStore(query as string);
+          const products = await searchStore(query as string, storeApi);
 
           return openai.createChatCompletion({
             model: "gpt-3.5-turbo-0613",

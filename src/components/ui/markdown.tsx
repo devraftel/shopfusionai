@@ -31,4 +31,6 @@ const Markdown: FC<MarkdownProps> = memo(({ role, children, ...props }) => (
   </ReactMarkdown>
 ));
 
+Markdown.displayName = "Markdown";
+
 export { Markdown };
