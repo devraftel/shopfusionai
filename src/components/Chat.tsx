@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { useChat } from "ai/react";
 import ReactMarkdown from "react-markdown";
 import { MessageCircle, Bot } from "lucide-react";
@@ -16,15 +17,23 @@ import {
 } from "@/components/ui/popover";
 
 export default function Chat() {
+  const [mounted, setMounted] = useState(false);
+
   const { input, handleInputChange, handleSubmit, messages } = useChat({
     api: "/api/chat",
   });
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
 
   return (
     <div className="bottom-6 absolute right-4 z-50">
       <Popover>
         <PopoverTrigger asChild>
-          <MessageCircle className="fill-slate-800 w-10 h-10 hover:scale-110 transition-all duration-300 cursor-pointer hover:animate-out" />
+          <MessageCircle className="fill-indigo-950 text-indigo-950 w-12 h-12 hover:scale-110 transition-all duration-300 cursor-pointer hover:animate-out" />
         </PopoverTrigger>
         <PopoverContent
           align="end"
