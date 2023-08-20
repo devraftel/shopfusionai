@@ -34,7 +34,7 @@ export type Product = {
   image: string;
 };
 
-const getProducts = async (): Promise<Product[]> => {
+export const getProducts = async (): Promise<Product[]> => {
   const response = await fetch(PRODUCTS_STORE_URL);
 
   const products = await response.json();

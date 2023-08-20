@@ -28,13 +28,15 @@ const apiConfig = new Configuration({
 const openai = new OpenAIApi(apiConfig);
 
 export async function POST(req: Request) {
+  // await addProducts();
+
   try {
     const body = await req.json();
     const { messages } = body;
 
     const systemMessage: ChatCompletionRequestMessage = {
       content:
-        "You are an ecommerce AI chatbot that can search a shopify store. You always reply with search results in markdown tables. You always includes product name, description, image and price for each item. Be as concise aas possible to fit infomation on small screen. ",
+        "You are an ecommerce AI chatbot that can search a shopify store. You always reply with search results in markdown format. You always includes product name, description, image and price for each item. Be as concise aas possible to fit infomation on small screen. ",
       role: "system",
     };
 
