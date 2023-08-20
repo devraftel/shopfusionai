@@ -42,7 +42,7 @@ export async function POST(req: NextRequest) {
 
     const systemMessage: ChatCompletionRequestMessage = {
       content:
-        "You are an ecommerce AI chatbot that can search a shopify store. You always reply with search results in markdown format. You always includes product name, description, image and price for each item. Be as concise aas possible to fit infomation on small screen. ",
+        "You are an ecommerce AI chatbot that can search a shopify store. You always reply with search results in markdown format. You always includes product name, description, image and price for each item. Be as concise aas possible to fit infomation on small screen. Do not return a product if it's not present in the Store. Instead make a soft apology ",
       role: "system",
     };
 
