@@ -5,9 +5,21 @@ import {
 } from "openai-edge";
 import { OpenAIStream, StreamingTextResponse } from "ai";
 import { searchStore } from "@/lib/searchStore";
-import { searchVectordb } from "@/lib/searchVectordb";
-
+import { WeaviateStore } from "langchain/vectorstores/weaviate";
+import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 export const runtime = "edge";
+
+import weaviate from "weaviate-ts-client";
+
+// Initialize Wealivite
+const client = (weaviate as any).client({
+  scheme: process.env.WEAVIATE_SCHEME || "https",
+  host: process.env.WEAVIATE_HOST || "localhost",
+  apiKey: new (weaviate as any).ApiKey(
+    process.env.WEAVIATE_API_KEY || "default"
+  ),
+  headers: { 'X-OpenAI-Api-Key': `${process.env.OPENAI_API_KEY}` }
+});
 
 const apiConfig = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -57,10 +69,25 @@ export async function POST(req: Request) {
       ) {
         if (name === "search_products") {
           const { query } = args;
+          console.log('[ORIGINAL_QUERY]', query);
 
-          const embedding = await generateEmbedding(query);
-          // const products = await searchVectordb(embedding);
-          const products = await searchStore(query as string);
+          // const embedding = await generateEmbedding(query);
+          // console.log('[QuERY_EMBEDDING]', embedding);
+
+          // Create a store from existing index
+          // Create a store for an existing index
+          const store = await WeaviateStore.fromExistingIndex(new OpenAIEmbeddings(), {
+            client,
+            indexName: "Products",
+            metadataKeys: ["price", "description", "category", "image"],
+          });
+
+          // Search the index without any filters
+          const products = await store.similaritySearch(query as string, 1);
+          console.log('[SIMILARIT_SEARCH]', products);
+
+
+          // const products = await searchStore(query as string);
 
           return openai.createChatCompletion({
             model: "gpt-3.5-turbo-0613",
@@ -84,19 +111,19 @@ export async function POST(req: Request) {
   }
 }
 
-async function generateEmbedding(_input: any) {
-  const input = _input.replace(/\n/g, " ");
-  const embeddingResponse = await openai.createEmbedding({
-    model: "text-embedding-ada-002",
-    input,
-  });
+// async function generateEmbedding(_input: any) {
+//   const input = _input.replace(/\n/g, " ");
+//   const embeddingResponse = await openai.createEmbedding({
+//     model: "text-embedding-ada-002",
+//     input,
+//   });
 
-  const embeddingData = await embeddingResponse.json();
+//   const embeddingData = await embeddingResponse.json();
 
-  if (embeddingData.data) {
-    const [{ embedding }] = (embeddingData as any).data;
-    return embedding;
-  }
+//   if (embeddingData.data) {
+//     const [{ embedding }] = (embeddingData as any).data;
+//     return embedding;
+//   }
 
-  throw new Error("No Embedding generated.");
-}
+//   throw new Error("No Embedding generated.");
+// }

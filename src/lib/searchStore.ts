@@ -25,7 +25,7 @@
 
 import { PRODUCTS_STORE_URL } from "@/config";
 
-type Product = {
+export type Product = {
   id: number;
   title: string;
   price: string;
