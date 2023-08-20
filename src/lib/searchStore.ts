@@ -23,6 +23,8 @@
 //   },
 // ];
 
+import { PRODUCTS_STORE_URL } from "@/config";
+
 type Product = {
   id: number;
   title: string;
@@ -33,7 +35,7 @@ type Product = {
 };
 
 const getProducts = async (): Promise<Product[]> => {
-  const response = await fetch("https://fakestoreapi.com/products");
+  const response = await fetch(PRODUCTS_STORE_URL);
 
   const products = await response.json();
 
