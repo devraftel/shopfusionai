@@ -6,6 +6,7 @@ import {
 import { OpenAIStream, StreamingTextResponse } from "ai";
 import { searchStore } from "@/lib/searchStore";
 import { searchVectordb } from "@/lib/searchVectordb";
+import { addProducts } from "@/scripts";
 
 export const runtime = "edge";
 
@@ -16,13 +17,15 @@ const apiConfig = new Configuration({
 const openai = new OpenAIApi(apiConfig);
 
 export async function POST(req: Request) {
+  // await addProducts();
+
   try {
     const body = await req.json();
     const { messages } = body;
 
     const systemMessage: ChatCompletionRequestMessage = {
       content:
-        "You are an ecommerce AI chatbot that can search a shopify store. You always reply with search results in markdown tables. You always includes product name, description, image and price for each item. Be as concise aas possible to fit infomation on small screen. ",
+        "You are an ecommerce AI chatbot that can search a shopify store. You always reply with search results in markdown format. You always includes product name, description, image and price for each item. Be as concise aas possible to fit infomation on small screen. ",
       role: "system",
     };
 
@@ -84,7 +87,7 @@ export async function POST(req: Request) {
   }
 }
 
-async function generateEmbedding(_input: any) {
+export async function generateEmbedding(_input: any) {
   const input = _input.replace(/\n/g, " ");
   const embeddingResponse = await openai.createEmbedding({
     model: "text-embedding-ada-002",
