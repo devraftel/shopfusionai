@@ -1,9 +1,11 @@
 "use client";
-import React from "react";
-import { Button } from "./ui/button";
 import { Copy } from "lucide-react";
 
+import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
+
 const DummyStoreAPIList = () => {
+  const { toast } = useToast();
   return (
     <div className="my-6 overflow-x-auto sm:overflow-x-visible">
       <div className="px-2 py-1">
@@ -36,11 +38,14 @@ const DummyStoreAPIList = () => {
               <td className="border px-4 py-2 text-left flex gap-x-2 items-center [&[align=center]]:text-center [&[align=right]]:text-right">
                 https://fakestoreapi.com/products
                 <Button
-                  onClick={() =>
+                  onClick={() => {
                     navigator.clipboard.writeText(
                       "https://fakestoreapi.com/products"
-                    )
-                  }
+                    );
+                    toast({
+                      title: "API key Copied",
+                    });
+                  }}
                   size={"icon"}
                   variant={"outline"}
                   className="ml-auto"
