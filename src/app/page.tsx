@@ -10,10 +10,7 @@ import DummyStoreAPIList from "@/components/DummyStoreAPIList";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
-export default function Home() {
-  // const generateIndexing = await run();
-  // console.log("[GENERATE_INDEXING_RUN]", generateIndexing);
-
+export default async function Home() {
   const api = cookies().get("storeApi")?.value || "";
 
   return (

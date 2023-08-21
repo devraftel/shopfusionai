@@ -4,7 +4,6 @@ import {
   OpenAIApi,
 } from "openai-edge";
 import { OpenAIStream, StreamingTextResponse } from "ai";
-import { searchStore } from "@/lib/searchStore";
 import { WeaviateStore } from "langchain/vectorstores/weaviate";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { NextRequest } from "next/server";
@@ -13,6 +12,7 @@ export const runtime = "edge";
 
 import weaviate from "weaviate-ts-client";
 import { PRODUCTS_STORE_URL } from "@/config";
+import { cookies } from "next/headers";
 
 // Initialize Wealivite
 const client = (weaviate as any).client({
@@ -34,6 +34,24 @@ export async function POST(req: NextRequest) {
   const storeApi =
     req.cookies.get("storeApi")?.value.replace(/["\s]/g, "") ||
     PRODUCTS_STORE_URL;
+
+  const API_INDEX_NAME = req.cookies.get("storeApiIndex")?.value || "Products";
+
+  console.log('[API_INDEX_NAME]', API_INDEX_NAME);
+
+  // const metadataKeysCookie = cookies().get("metadataKeys");
+  // const metadataKeysString = metadataKeysCookie ? metadataKeysCookie.value : undefined;
+
+  // let metadataKeys = metadataKeysString ? JSON.parse(metadataKeysString) : [];
+
+  // metadataKeys = metadataKeys.filter((key: string) =>
+  //   key !== 'id' &&
+  //   key !== 'creationAt' &&
+  //   key !== 'updatedAt' &&
+  //   key !== 'title'
+  // );
+
+  // console.log('[INDEXING_METADATA_KEYS]', metadataKeys);
 
   try {
     const body = await req.json();
@@ -79,27 +97,20 @@ export async function POST(req: NextRequest) {
           const { query } = args;
           console.log("[ORIGINAL_QUERY]", query);
 
-          // const embedding = await generateEmbedding(query);
-          // console.log('[QuERY_EMBEDDING]', embedding);
-
-          // Create a store from existing index
           // Create a store for an existing index
           const store = await WeaviateStore.fromExistingIndex(
             new OpenAIEmbeddings(),
             {
               client,
-              indexName: "Products",
+              indexName: API_INDEX_NAME,
               metadataKeys: ["price", "description", "category", "image"],
             }
           );
 
           // Search the index without any filters
           const products = await store.similaritySearch(query as string, 1);
-          console.log("[SIMILARIT_SEARCH]", products);
+          console.log("[SIMILARITY_SEARCH]", products);
 
-          // const embedding = await generateEmbedding(query);
-          // const products = await searchVectordb(embedding);
-          // const products = await searchStore(query as string, storeApi);
 
           return openai.createChatCompletion({
             model: "gpt-3.5-turbo-0613",
@@ -108,7 +119,6 @@ export async function POST(req: NextRequest) {
               systemMessage,
               ...messages,
               ...createFunctionMessages({
-                // products,
                 products: JSON.stringify(products),
               }),
             ],
@@ -122,20 +132,3 @@ export async function POST(req: NextRequest) {
     console.log("API_ERROR_EDGE", (error as { message: string }).message);
   }
 }
-
-// async function generateEmbedding(_input: any) {
-//   const input = _input.replace(/\n/g, " ");
-//   const embeddingResponse = await openai.createEmbedding({
-//     model: "text-embedding-ada-002",
-//     input,
-//   });
-
-//   const embeddingData = await embeddingResponse.json();
-
-//   if (embeddingData.data) {
-//     const [{ embedding }] = (embeddingData as any).data;
-//     return embedding;
-//   }
-
-//   throw new Error("No Embedding generated.");
-// }
