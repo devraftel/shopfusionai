@@ -1,5 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react";
 
 import Chat from "@/components/Chat";
 
@@ -30,6 +31,7 @@ export default function RootLayout({
         <Toaster />
         <Chat />
         {children}
+        <Analytics />
       </body>
     </html>
   );
