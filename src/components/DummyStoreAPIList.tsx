@@ -7,8 +7,13 @@ const DummyStoreAPIList = () => {
   return (
     <div className="my-6">
       <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight text-center underline">
-        Dummy Store API
+        Store Test APIs
       </h3>
+      <small className="text-sm font-medium leading-none text-center">
+        To get started add your store API key to the input above or use one of
+        the test APIs below.
+      </small>
+
       <div className="my-4 w-full overflow-y-auto">
         <table className="w-full">
           <thead>
@@ -42,9 +47,9 @@ const DummyStoreAPIList = () => {
                 </Button>
               </td>
             </tr>
-            <tr className="m-0 border-t p-0 even:bg-muted">
+            {/* <tr className="m-0 border-t p-0 even:bg-muted">
               <td className="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
-                dummy JSON
+                dummyJSON
               </td>
               <td className="border px-4 py-2 gap-x-2 flex items-center text-left [&[align=center]]:text-center [&[align=right]]:text-right">
                 https://dummyjson.com/products
@@ -61,7 +66,7 @@ const DummyStoreAPIList = () => {
                   <Copy className="w-5 h-5" size={20} />
                 </Button>
               </td>
-            </tr>
+            </tr> */}
           </tbody>
         </table>
       </div>

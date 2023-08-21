@@ -31,7 +31,7 @@ const StoreApiInput = ({ children }: { children: React.ReactNode }) => {
     <div className="my-2">
       <form
         onSubmit={handleSubmit}
-        className="flex items-center gap-x-2 my-4 md:my-6 rounded-md p-10 bg-gradient-to-r from-indigo-50 to-emerald-50 "
+        className="flex items-center gap-x-2 my-4 md:my-6 shadow rounded-md p-10 bg-gradient-to-r from-indigo-50 to-emerald-50 "
       >
         <Input
           type="text"
@@ -49,7 +49,7 @@ const StoreApiInput = ({ children }: { children: React.ReactNode }) => {
           Add
         </Button>
       </form>
-      <p className="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold">
+      <p className="relative shadow rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold">
         {children}
       </p>
     </div>

@@ -3,10 +3,13 @@ import weaviate from "weaviate-ts-client";
 import { WeaviateStore } from "langchain/vectorstores/weaviate";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { cookies } from "next/headers";
+import { PRODUCTS_STORE_URL } from "@/config";
 
 export async function run() {
 
-  const PRODUCTS_API = cookies().get("storeApi")?.value || "";
+  let PRODUCTS_API = cookies().get("storeApi")?.value || "";
+  PRODUCTS_API === undefined && PRODUCTS_API === PRODUCTS_STORE_URL
+
   console.log('[GENERATE_PRODUCTS_API]', PRODUCTS_API);
 
   const API_INDEX_NAME = cookies().get("storeApiIndex")?.value || "";
