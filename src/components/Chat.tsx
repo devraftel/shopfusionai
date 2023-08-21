@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useChat } from "ai/react";
 import ReactMarkdown from "react-markdown";
-import { MessageCircle, Bot, X } from "lucide-react";
+import { MessageCircle, Bot, X, CornerRightDown } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Markdown } from "@/components/ui/markdown";
@@ -36,7 +36,10 @@ export default function Chat() {
     <div className="md:bottom-6 bottom-2 right-2 absolute md:right-4 z-50 ">
       <Popover defaultOpen={open} onOpenChange={onOpenChange} open={open}>
         <PopoverTrigger asChild>
-          <MessageCircle className="fill-indigo-950 text-indigo-950 w-12 h-12 hover:scale-110 transition-all duration-300 cursor-pointer hover:animate-out" />
+          {/* <> */}
+          {/* <CornerRightDown className=" text-indigo-700 w-12 h-12 hover:scale-110 transition-all  cursor-pointer animate-bounce duration-700" /> */}
+          <MessageCircle className="fill-indigo-700 text-indigo-700 w-12 h-12 hover:scale-110 transition-all duration-300 cursor-pointer hover:animate-out" />
+          {/* </> */}
         </PopoverTrigger>
         <PopoverContent
           align="end"
@@ -141,3 +144,12 @@ export default function Chat() {
     </div>
   );
 }
+
+const ClickChat = () => {
+  return (
+    <>
+      <CornerRightDown className=" text-indigo-700 w-12 h-12 hover:scale-110 transition-all  cursor-pointer animate-bounce duration-700" />
+      <MessageCircle className="fill-indigo-700 text-indigo-700 w-12 h-12 hover:scale-110 transition-all duration-300 cursor-pointer hover:animate-out" />
+    </>
+  );
+};
