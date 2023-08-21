@@ -1,4 +1,4 @@
-import fetch from "node-fetch";
+// import fetch from "node-fetch";
 import weaviate from "weaviate-ts-client";
 import { WeaviateStore } from "langchain/vectorstores/weaviate";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";

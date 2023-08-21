@@ -18,3 +18,7 @@ export function extractMetadataKeys(responseObject: any): string[] {
   const metadataKeys = Object.keys(responseObject);
   return metadataKeys;
 }
+
+export function absoluteUrl(path: string) {
+  return `${process.env.NEXT_PUBLIC_APP_URL}${path}`
+}

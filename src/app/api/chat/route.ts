@@ -111,15 +111,23 @@ export async function POST(req: NextRequest) {
           const products = await store.similaritySearch(query as string, 1);
           console.log("[SIMILARITY_SEARCH]", products);
 
+          const buyNowData = {
+            title: products[0]?.pageContent,
+            description: products[0]?.metadata.category,
+            price: products[0]?.metadata.price,
+            image: products[0]?.metadata.image,
+          }
 
           return openai.createChatCompletion({
             model: "gpt-3.5-turbo-0613",
             stream: true,
             messages: [
               systemMessage,
+              // buyNowData,
               ...messages,
               ...createFunctionMessages({
                 products: JSON.stringify(products),
+                buyNowData
               }),
             ],
           });
