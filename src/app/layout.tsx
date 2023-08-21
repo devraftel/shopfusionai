@@ -2,7 +2,6 @@ import "./globals.css";
 import type { Metadata } from "next";
 
 import Chat from "@/components/Chat";
-import Navbar from "@/components/Navbar";
 
 import { Urbanist } from "next/font/google";
 
@@ -22,8 +21,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={urbanist.className}>
         <Chat />
-        <Navbar />
-        <div className="pt-16 h-full w-full">{children}</div>
+        <div className="h-full w-full bg-gradient-to-r from-zinc-50 to-zinc-100">
+          {children}
+        </div>
       </body>
     </html>
   );
