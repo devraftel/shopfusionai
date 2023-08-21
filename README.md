@@ -1,34 +1,36 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Shop Fusion AI - your new shopping buddy
 
-First, run the development server:
+### Summmary:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Gone are the days of endless browsing and tedious checkouts. With ShopFusionAI, you'll enjoy personalized suggestions, and a seamless checkout experience that's almost as exciting as unboxing your delivery.
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+Meet Shop Fusion AI: Creating NextGen eCommerce Personalized Experiences
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Users Will Get a Feel of TheirPersonal Wardrobe Manager. Imagine stepping into an eCommerce store where Shop Fusion AI, helps browse the products. And it gives recommendations based on your preferences, the occasion you're shopping for, and even the weather in your location. It can:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+>> Recommend Products: Matching outfits, accessories, even advising on the right footwear for a long drive.
+>> Answer Queries: From styling suggestions for a summer day to personal shopping assistance.
+>> Manage Checkout: Seamless browsing, personalized recommendations, efficient checkout, and robust after-sale support, including changes, refunds, and more.
 
-## Deploy on Vercel
+Let's reThink the User Experience: Imagine you have a new shirt, but need matching pants and shoes for a party. Simply inform Shop Fusion AI about the event, what you have, and your preferences. Receive instant, personalized recommendations for the perfect ensemble.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+For Store Owners It's time to create Personalized user Checkout Experiences. 
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Imagine you have got a running eCommerce store. You got some support staff which answers and assists the users. In day or two they also manually process customer orders. But being a human they may be tired or angry due to any reason which may impact on their dealing with customers which will result in loss and bad customer relationship. 
+
+Shop Fusion AI is solution to all above and a lot more. It always greet users in a happy mood, never get tired. Answers a lot
+faster then normal human (using latest state of art tech (similarity based search engine, vector embedding, edge servers)). Browser products, suggest them products based on the local data where user is present (weather, culture, language), add the  products to the cart. Check out for them, Send the tracking ID on their email and what's app.
+
+You can also let registered users to use the Shop Fusion AI for their daily recommendations for dressings and so on. 
+
+## Run Locally
+
+On Website you can enter your store products api. Try out with the mock API: https://shopfusion-ai.vercel.app/.
+
+Tap the Chat Icon on right bottom and start your immersive shopping experience.
+
+To Run the project locally rename .env.example to env and enter the API KEYs.
