@@ -6,13 +6,13 @@ import {
 import { OpenAIStream, StreamingTextResponse } from "ai";
 import { WeaviateStore } from "langchain/vectorstores/weaviate";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
-import { NextRequest } from "next/server";
 
 export const runtime = "edge";
 
 import weaviate from "weaviate-ts-client";
 import { PRODUCTS_STORE_URL } from "@/config";
 import { cookies } from "next/headers";
+import { NextRequest } from "next/server";
 
 // Initialize Wealivite
 const client = (weaviate as any).client({
@@ -60,7 +60,7 @@ export async function POST(req: NextRequest) {
 
     const systemMessage: ChatCompletionRequestMessage = {
       content:
-        "You are an ecommerce AI chatbot that can search a shopify store. You always reply with search results in markdown format. You always includes product name, description, image and price for each item. Be as concise aas possible to fit infomation on small screen. Do not return a product if it's not present in the Store. Instead make a soft apology ",
+        "You are an ecommerce AI chatbot that can search a eCommerce store. You always reply with search results in markdown format. You always includes product name, description, image, price and category for each item. Be as concise aas possible to fit infomation on small screen. Do not return a product if it's not present in the Store. Instead make a soft apology anf offer personalized experience ",
       role: "system",
     };
 
@@ -118,6 +118,9 @@ export async function POST(req: NextRequest) {
             image: products[0]?.metadata.image,
           }
 
+          console.log('[BUYNOW]', buyNowData);
+
+
           return openai.createChatCompletion({
             model: "gpt-3.5-turbo-0613",
             stream: true,
@@ -127,9 +130,11 @@ export async function POST(req: NextRequest) {
               ...messages,
               ...createFunctionMessages({
                 products: JSON.stringify(products),
-                buyNowData
+                // buyNowData: JScON.stringify(buyNowData)
               }),
             ],
+            temperature: 0.7
+
           });
         }
       },

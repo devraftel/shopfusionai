@@ -1,8 +1,8 @@
 
-import { NextRequest, NextResponse } from "next/server";
 
 import { stripe } from "@/lib/stripe";
 import { absoluteUrl } from "@/lib/utils";
+import { NextRequest, NextResponse } from "next/server";
 
 const settingsUrl = 'http://localhost:3000'
 
@@ -10,10 +10,18 @@ export async function GET(request: NextRequest) {
 
     const req = request.nextUrl;
     const title = req.searchParams.get("title") as string;
-    const description = req.searchParams.get("description") as string;
-    const price = (req.searchParams.get('price'))
-    const finalPrice = price ? parseFloat(price) : 0
-
+    console.log('[STRIPE_TITLE]', title);
+    const category = req.searchParams.get("category") as string;
+    console.log('[STRIPE_category]', category);
+    const image = req.searchParams.get("image") as string;
+    console.log('[STRIPE_image]', image);
+    // const price = (req.searchParams.get('price'))
+    // console.log('[STRIPE_price]', price);
+    // const priceNumber = parseFloat(price.replace("$", ""));
+    // const finalPrice = price ? parseFloat(price) : 0
+    const priceString = (req.searchParams.get('price'))
+    const priceNumber = priceString ? parseFloat(priceString.replace("$", "")) : 0;
+    console.log('[STRIPE_finalPrice]', priceNumber);
 
 
     try {
@@ -30,9 +38,10 @@ export async function GET(request: NextRequest) {
                         currency: "USD",
                         product_data: {
                             name: title,
-                            description: description
+                            description: category,
+                            images: [image]
                         },
-                        unit_amount: finalPrice * 100,
+                        unit_amount: priceNumber * 100,
                     },
                     quantity: 1,
                 },

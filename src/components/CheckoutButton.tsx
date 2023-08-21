@@ -10,11 +10,15 @@ import { useToast } from "@/components/ui/use-toast";
 export const SubscriptionButton = ({
   title,
   price,
+  image,
+  category,
   description,
 }: {
   title: string;
-  description: string;
-  price: number | string;
+  price: number;
+  image: string;
+  category: string;
+  description?: string;
 }) => {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
@@ -24,7 +28,7 @@ export const SubscriptionButton = ({
       setLoading(true);
 
       const response = await axios.get(
-        `/api/stripe?title=${title}&description=${description}&price=${price}`
+        `/api/stripe?title=${title}&price=${price}&category=${category}&image=${image}`
       );
 
       window.location.href = response.data.url;
@@ -40,7 +44,7 @@ export const SubscriptionButton = ({
 
   return (
     <Button size="sm" variant={"default"} disabled={loading} onClick={onClick}>
-      Buy Now
+      Checkout Now
       <Sparkles className="w-4 h-4 ml-2 fill-white" />
     </Button>
   );
