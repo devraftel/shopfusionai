@@ -33,7 +33,7 @@ export default function Chat() {
   if (!mounted) return null;
 
   return (
-    <div className="bottom-6 absolute right-4 z-50">
+    <div className="md:bottom-6 bottom-2 right-2 absolute md:right-4 z-50 ">
       <Popover defaultOpen={open} onOpenChange={onOpenChange} open={open}>
         <PopoverTrigger asChild>
           <MessageCircle className="fill-indigo-950 text-indigo-950 w-12 h-12 hover:scale-110 transition-all duration-300 cursor-pointer hover:animate-out" />

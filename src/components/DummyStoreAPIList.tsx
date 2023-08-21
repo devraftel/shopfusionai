@@ -5,14 +5,16 @@ import { Copy } from "lucide-react";
 
 const DummyStoreAPIList = () => {
   return (
-    <div className="my-6">
-      <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight text-center underline">
-        Store Test APIs
-      </h3>
-      <small className="text-sm font-medium leading-none text-center">
-        To get started add your store API key to the input above or use one of
-        the test APIs below.
-      </small>
+    <div className="my-6 overflow-x-auto sm:overflow-x-visible">
+      <div className="px-2 py-1">
+        <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight text-center underline">
+          Store Test APIs
+        </h3>
+        <small className="text-sm font-medium leading-none text-center">
+          To get started add your store API key to the input above or use one of
+          the test APIs below.
+        </small>
+      </div>
 
       <div className="my-4 w-full overflow-y-auto">
         <table className="w-full">

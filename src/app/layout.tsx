@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import Chat from "@/components/Chat";
 
 import { Urbanist } from "next/font/google";
+import { cn } from "@/lib/utils";
 
 const urbanist = Urbanist({ subsets: ["latin"] });
 
@@ -19,11 +20,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={urbanist.className}>
+      <body
+        className={cn(
+          "bg-gradient-to-r from-zinc-50 to-zinc-100",
+          urbanist.className
+        )}
+      >
         <Chat />
-        <div className="h-full w-full bg-gradient-to-r from-zinc-50 to-zinc-100">
-          {children}
-        </div>
+        {children}
       </body>
     </html>
   );
