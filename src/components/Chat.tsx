@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useChat } from "ai/react";
 import ReactMarkdown from "react-markdown";
-import { MessageCircle, Bot } from "lucide-react";
+import { MessageCircle, Bot, X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Markdown } from "@/components/ui/markdown";
@@ -18,6 +18,9 @@ import {
 
 export default function Chat() {
   const [mounted, setMounted] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const onOpenChange = () => setOpen(!open);
 
   const { input, handleInputChange, handleSubmit, messages } = useChat({
     api: "/api/chat",
@@ -31,7 +34,7 @@ export default function Chat() {
 
   return (
     <div className="bottom-6 absolute right-4 z-50">
-      <Popover>
+      <Popover defaultOpen={open} onOpenChange={onOpenChange} open={open}>
         <PopoverTrigger asChild>
           <MessageCircle className="fill-indigo-950 text-indigo-950 w-12 h-12 hover:scale-110 transition-all duration-300 cursor-pointer hover:animate-out" />
         </PopoverTrigger>
