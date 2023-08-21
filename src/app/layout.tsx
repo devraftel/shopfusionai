@@ -5,6 +5,7 @@ import Chat from "@/components/Chat";
 
 import { Urbanist } from "next/font/google";
 import { cn } from "@/lib/utils";
+import { Toaster } from "@/components/ui/toaster";
 
 const urbanist = Urbanist({ subsets: ["latin"] });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
           urbanist.className
         )}
       >
+        <Toaster />
         <Chat />
         {children}
       </body>
