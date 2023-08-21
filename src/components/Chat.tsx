@@ -32,7 +32,7 @@ export default function Chat() {
 
   if (!mounted) return null;
 
-  console.log("[CLIENT_RED]", messages[1]);
+  // console.log("[CLIENT_RED]", messages[1]);
 
   return (
     <div className="md:bottom-6 bottom-2 right-2 absolute md:right-4 z-50 ">

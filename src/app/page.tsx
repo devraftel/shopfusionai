@@ -34,15 +34,12 @@ export default async function Home() {
           are the days of endless browsing and tedious checkouts. With
           ShopFusionAI, you&apos;ll enjoy personalized suggestions, image-based
           searches, and a seamless checkout experience that&apos;s almost as
-          exciting as unboxing your delivery. Whether you&apos;re on the hunt
-          for the perfect gadget or outfitting your entire home, ShopFusionAI
-          turns shopping into an adventure. It&apos;s not just shopping;
-          it&apos;s retail reimagined, all with a wink and a smile. Get ready to
-          shop like never before! 🛒🎉
+          exciting as unboxing your delivery. Get ready to shop like never
+          before! 🛒🎉
         </Balancer>
       </p>
 
-      <StoreApiInput>Store_API_Key: {api}</StoreApiInput>
+      <StoreApiInput>Active_Store_API: {api}</StoreApiInput>
 
       <DummyStoreAPIList />
     </div>

@@ -18,7 +18,7 @@ interface MarkdownProps extends ReactMarkdownOptions {
 const Markdown: FC<MarkdownProps> = memo(
   ({ role, children, title, description, price, ...props }) => {
     const productDetails = extractProductDetails(children || "");
-    console.log("[PRODUCT_DERAILS]", productDetails);
+    // console.log("[PRODUCT_DERAILS]", productDetails);
 
     const redirectToCheckout = () => {
       const params = new URLSearchParams(productDetails).toString();

@@ -4,8 +4,7 @@ import { stripe } from "@/lib/stripe";
 import { absoluteUrl } from "@/lib/utils";
 import { NextRequest, NextResponse } from "next/server";
 
-const settingsUrl = 'http://localhost:3000'
-
+const settingsUrl = process.env.Base_Url!
 export async function GET(request: NextRequest) {
 
     const req = request.nextUrl;
