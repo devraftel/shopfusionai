@@ -15,7 +15,7 @@ const Navbar = () => {
             montserrat.className
           )}
         >
-          AI Shopping Expert
+          ShopFusionAI
         </h1>
       </Link>
     </div>

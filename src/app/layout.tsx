@@ -9,7 +9,7 @@ import { Urbanist } from "next/font/google";
 const urbanist = Urbanist({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "AI Shopping Expert",
+  title: "ShopFusionAI",
   description: "Autonomous Shopping AI Expert Chat Bot",
 };
 
