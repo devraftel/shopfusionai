@@ -32,3 +32,8 @@ On Website you can enter your store products api. Try out with the mock API: htt
 Tap the Chat Icon on right bottom and start your immersive shopping experience.
 
 To Run the project locally rename .env.example to env and enter the API KEYs.
+
+#### Notes
+
+* This ideas was developed in the Lablab Autonomous Agenets hackathon. 
+* Here's the (submission link)[https://lablab.ai/event/autonomous-agents-hackathon/devraftel/shop-fusion-ai-your-new-shopping-buddy] as well :D
