@@ -10,7 +10,7 @@
 
 We are are excited to share that ShopFusion AI stands among the top 25 in lablab Autonomous Agents Hackathon
 
-![WhatsApp Image 2023-08-31 at 6 47 01 PM](https://github.com/devraftel/shopfusionai/assets/28400845/89d672ac-9242-4e0b-8756-297bd5babbf8)
+![WhatsApp Image 2023-08-31 at 6 47 01 PM](https://github.com/devraftel/shopfusionai/assets/28400845/2a39759a-c7f3-4e66-85f3-e8882f97aaeb)
 
 ## Summmary:
 
