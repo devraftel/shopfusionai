@@ -1,5 +1,11 @@
 ## Shop Fusion AI - your new shopping buddy
 
+## Results Announcement
+
+We are are excited to share that ShopFusion AI stands among the top 25 in lablab Autonomous Agents Hackathon
+
+![WhatsApp Image 2023-08-31 at 6 47 01 PM](https://github.com/devraftel/shopfusionai/assets/28400845/89d672ac-9242-4e0b-8756-297bd5babbf8)
+
 ### Summmary:
 
 Gone are the days of endless browsing and tedious checkouts. With ShopFusionAI, you'll enjoy personalized suggestions, and a seamless checkout experience that's almost as exciting as unboxing your delivery.
